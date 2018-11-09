@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-import java.nio.file.Path;
 import java.util.*;
 import java.io.*;
 
@@ -9,6 +7,16 @@ public class Euclidian {
 
     }
 
+    //region Main Methods
+    /*
+    * @param filePath => the path to the file we are reading from
+    * @param sets => the set to be created input can be training set or testing set
+    *
+    * Will read from the csv file that we specify the path.
+    * Will create Point objects with the retrieved attributes
+    * and store them into the sets
+    *
+    * */
     public ArrayList<Point> createSets(String filePath, ArrayList<Point> sets) throws FileNotFoundException {
 
             //Input file which needs to be parsed
@@ -48,12 +56,30 @@ public class Euclidian {
         }
     }
 
+    /*
+    * @param trainingSet
+    * @param testingSet
+    *
+    * Will calculate the distance for each instance of testing
+    * against all instances of training set instance
+    * */
     public void calculateDistance(ArrayList<Point> trainingSet, ArrayList<Point> testingSet, ArrayList<Double> distance) {
         for (int i = 0; i < testingSet.size(); i++) {
+            Point aTestingSet = testingSet.get(i);
             for (int j = 0; j < trainingSet.size(); j++) {
-               distance.add((double)Math.sqrt((trainingSet.get(j).getX() - testingSet.get(i).getX()) + (trainingSet.get(j).getY() - testingSet.get(i).getY()) + (trainingSet.get(j).getZ() - testingSet.get(i).getZ())));
+
+                distance.add((double) Math.sqrt((trainingSet.get(j).getX() - aTestingSet.getX()) + (trainingSet.get(j).getY() - aTestingSet.getY()) + (trainingSet.get(j).getZ() - aTestingSet.getZ())));
             }
         }
     }
 
+    /*
+    * Given the euclidean distance
+    * will give the testing set the class that belongs
+    * based on the K = value;
+    * */
+    public void classify(){
+
+    }
+    //endregion
 }
